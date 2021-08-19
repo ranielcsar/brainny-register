@@ -1,10 +1,10 @@
 import { Switch, Route } from 'react-router-dom'
-import Login from 'pages/Login'
+import Dashboard from 'pages/Dashboard'
 
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" component={Dashboard} />
     </Switch>
   )
 }
