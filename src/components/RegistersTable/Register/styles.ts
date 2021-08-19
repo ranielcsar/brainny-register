@@ -11,10 +11,10 @@ export const Container = styled(TableCell)`
   border: none;
   position: relative;
   margin-bottom: 35px;
-  max-height: 75px;
 
   &&& {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
   }
@@ -27,15 +27,31 @@ export const Container = styled(TableCell)`
     background-color: ${accent_2};
     border-radius: 30px;
     left: 25px;
+    top: 40%;
+  }
+
+  @media (min-width: 768px) {
+    max-height: 75px;
+
+    &::before {
+      top: unset;
+    }
+
+    &&& {
+      flex-direction: row;
+    }
   }
 `
 
 export const PersonalInfos = styled('section')`
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: center;
 
-  margin-left: 60px;
+  @media (min-width: 768px) {
+    margin-left: 60px;
+    text-align: left;
+  }
 `
 
 export const Name = styled('p')`
@@ -48,6 +64,7 @@ export const Id = styled('p')`
 export const Date = styled('p')`
   font-size: 20px;
   color: ${gray_2};
+  margin: 10px 0;
 `
 
 export const Hour = styled('p')`

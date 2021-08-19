@@ -1,7 +1,7 @@
 import React from 'react'
-import Colaborator from './Colaborator'
+import Register from './Register'
 
-import { Body, HeadCell, BodyCell, Container, Head, Row, StyledTable } from './styles'
+import { Body, HeadCell, Container, Head, Row, StyledTable } from './styles'
 
 const data = [
   {
@@ -45,7 +45,7 @@ const RegistersTable: React.FC = () => {
         <Body>
           {data.map((item: any) => (
             <Row key={item.colaborator.id}>
-              <Colaborator
+              <Register
                 colaborator={item.colaborator}
                 date={item.date}
                 hour={item.hour}

@@ -1,13 +1,16 @@
 import React from 'react'
-import PageContainer from 'containers/PageContainer'
+import RegistersTable from 'components/RegistersTable'
 
-import { Container } from './styles'
+import { Container, RegisterButton } from './styles'
+import NewRegisterDrawer from 'components/NewRegisterDrawer'
 
 const MyRegisters: React.FC = () => {
   return (
-    <PageContainer>
-      <h1>oie</h1>
-    </PageContainer>
+    <Container>
+      <NewRegisterDrawer />
+      <RegisterButton title="Registrar" />
+      <RegistersTable />
+    </Container>
   )
 }
 

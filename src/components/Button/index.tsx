@@ -4,10 +4,11 @@ import { Container, Title } from './styles'
 
 export type ButtonProps = Partial<HTMLButtonElement> & {
   title: string
+  secondary?: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({ title, ...props }) => (
-  <Container {...props}>
+const Button: React.FC<ButtonProps> = ({ title, secondary, ...props }) => (
+  <Container {...props} secondary={secondary}>
     <Title>{title}</Title>
   </Container>
 )

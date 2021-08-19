@@ -9,7 +9,4 @@ export default createGlobalStyle`
     padding: 0;
     color: #303030;
   }
-
-  #root {
-  }
 `

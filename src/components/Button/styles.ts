@@ -15,17 +15,18 @@ export const Container = styled('button').attrs((props: ButtonProps) => ({
   position: relative;
   z-index: 1;
   outline: none;
-  border: none;
+  border: ${(props: ButtonProps) => (props.secondary ? `1px solid ${accent}` : 'none')};
   cursor: pointer;
-  background-color: ${accent};
-  color: ${white};
+  background-color: ${(props: ButtonProps) => (props.secondary ? white : accent)};
+  color: ${(props: ButtonProps) => (props.secondary ? accent : white)};
 `
 
 export const Title = styled('p')`
-  font-size: 24px;
+  font-size: 150%;
   line-height: 29px;
   letter-spacing: 0.7px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   z-index: 1;
+  color: inherit;
 `

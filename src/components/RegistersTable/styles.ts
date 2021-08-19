@@ -14,11 +14,6 @@ export const Row = styled(TableRow)``
 export const Body = styled(TableBody)``
 export const Head = styled(TableHead)``
 
-export const BodyCell = styled(TableCell)`
-  width: 100%;
-  border: none;
-`
-
 export const HeadCell = styled(TableCell)`
   &&& {
     border: none;

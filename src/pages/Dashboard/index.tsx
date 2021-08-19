@@ -1,16 +1,13 @@
-import RegistersTable from 'components/RegistersTable'
-import PageContainer from 'containers/PageContainer'
 import React from 'react'
+import RegistersTable from 'components/RegistersTable'
 
 import { Container } from './styles'
 
 const Dashboard: React.FC = () => {
   return (
-    <PageContainer>
-      <Container>
-        <RegistersTable />
-      </Container>
-    </PageContainer>
+    <Container>
+      <RegistersTable />
+    </Container>
   )
 }
 

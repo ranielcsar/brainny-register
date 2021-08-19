@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Container, PersonalInfos, Name, Id, Date, Hour } from './styles'
 
-export type ColaboratorProps = {
+export type RegisterProps = {
   colaborator: {
     name: string
     id: string
@@ -11,7 +11,7 @@ export type ColaboratorProps = {
   hour: string
 }
 
-const Colaborator: React.FC<ColaboratorProps> = ({ colaborator, date, hour }) => (
+const Register: React.FC<RegisterProps> = ({ colaborator, date, hour }) => (
   <Container>
     <PersonalInfos>
       <Name>{colaborator.name}</Name>
@@ -24,4 +24,4 @@ const Colaborator: React.FC<ColaboratorProps> = ({ colaborator, date, hour }) =>
   </Container>
 )
 
-export default Colaborator
+export default Register

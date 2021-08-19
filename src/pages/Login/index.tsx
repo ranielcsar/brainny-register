@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, RefObject } from 'react'
 import TextInput from 'components/Inputs/TextInput'
 import Button from 'components/Button'
 
@@ -13,7 +13,12 @@ import {
   LoginForm,
 } from './styles'
 
+type RefType = RefObject<HTMLInputElement>
+
 const Login: React.FC = () => {
+  const loginRef = useRef<unknown>(null)
+  const passwordRef = useRef<unknown>(null)
+
   return (
     <Container>
       <ApresentationContainer>
@@ -26,8 +31,8 @@ const Login: React.FC = () => {
         <LoginVector />
 
         <LoginForm>
-          <TextInput title="Login" />
-          <TextInput title="Senha" />
+          <TextInput title="Login" ref={loginRef as RefType} />
+          <TextInput title="Senha" type="password" ref={passwordRef as RefType} />
           <Button title="Login" />
         </LoginForm>
       </LoginFormContainer>
