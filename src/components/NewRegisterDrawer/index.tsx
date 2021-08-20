@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Drawer } from '@material-ui/core'
+import { ContextUser } from 'context'
 
 import {
   Content,
@@ -14,15 +15,17 @@ import {
 } from './styles'
 
 const NewRegisterDrawer: React.FC = () => {
+  const { user } = useContext(ContextUser)
+
   return (
-    <Drawer open={false} anchor={'right'}>
+    <Drawer open={true} anchor={'right'}>
       <Content>
         <Header>Novo Registro</Header>
 
         <MiddleContainer>
           <UserInfos>
-            <Role>Colaborador</Role>
-            <Name>João Silva</Name>
+            <Role>{user.role}</Role>
+            <Name>{user.username}</Name>
           </UserInfos>
         </MiddleContainer>
 

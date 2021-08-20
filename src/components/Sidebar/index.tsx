@@ -36,7 +36,7 @@ const Sidebar: React.FC = () => {
           <Logo />
           <Divider />
 
-          <SidebarItem path="/" label="Dashboard" icon={DashboardIcon} />
+          <SidebarItem path="dashboard" label="Dashboard" icon={DashboardIcon} />
           <SidebarItem path="my-registers" label="Meus Registros" icon={RegistersIcon} />
         </>
       )}

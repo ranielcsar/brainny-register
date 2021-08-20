@@ -1,16 +1,20 @@
 import { Switch, Route } from 'react-router-dom'
+import Login from 'pages/Login'
 import Dashboard from 'pages/Dashboard'
 import MyRegisters from 'pages/MyRegisters'
+import PrivateRoute from './PrivateRoute'
 import PageLayout from 'layout/PageLayout'
 
 function Routes() {
   return (
-    <PageLayout>
-      <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route exact path="/my-registers" component={MyRegisters} />
-      </Switch>
-    </PageLayout>
+    <Switch>
+      <Route exact path="/" component={Login} />
+
+      <PageLayout>
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/my-registers" component={MyRegisters} />
+      </PageLayout>
+    </Switch>
   )
 }
 

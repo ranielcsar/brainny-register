@@ -27,7 +27,7 @@ const MobileMenu: React.FC<Props> = ({ open, onClick, onClose }) => (
     <Drawer anchor={'left'} open={open}>
       <DrawerContent>
         <CloseIcon style={closeIconStyle} onClick={onClose} />
-        <SidebarItem path="/" label="Dashboard" icon={DashboardIcon} />
+        <SidebarItem path="dashboard" label="Dashboard" icon={DashboardIcon} />
         <SidebarItem path="my-registers" label="Meus Registros" icon={RegistersIcon} />
       </DrawerContent>
     </Drawer>

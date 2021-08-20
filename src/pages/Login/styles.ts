@@ -99,6 +99,7 @@ export const LoginFormContainer = styled('section')`
   display: flex;
   justify-content: center;
   width: 100%;
+  margin: auto;
 
   @media (min-width: 768px) {
     width: 30.125rem;
@@ -149,6 +150,7 @@ export const LoginForm = styled('form')`
   border-radius: 40px;
   align-self: center;
   width: 95%;
+  margin: auto;
 
   @media (min-width: 1440px) {
     width: 31.9375rem;

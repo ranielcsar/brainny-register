@@ -34,12 +34,20 @@ export const Role = styled('h5')`
   font-size: 16px;
   line-height: 17px;
   margin-bottom: 15px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 `
 
 export const Name = styled('h3')`
   font-weight: 300;
   font-size: 30px;
   line-height: 28px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 `
 
 export const FormContainer = styled('div')``
