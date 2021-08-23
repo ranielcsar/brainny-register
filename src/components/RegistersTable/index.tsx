@@ -3,34 +3,20 @@ import Register from './Register'
 
 import { Body, HeadCell, Container, Head, Row, StyledTable } from './styles'
 
-const data = [
-  {
-    colaborator: {
-      name: 'João Silva',
-      id: '001',
-    },
-    date: '12/10/21',
-    hour: '9:00',
-  },
-  {
-    colaborator: {
-      name: 'Joana Silva',
-      id: '002',
-    },
-    date: '12/10/21',
-    hour: '11:00',
-  },
-  {
-    colaborator: {
-      name: 'Rio Silva',
-      id: '003',
-    },
-    date: '12/10/21',
-    hour: '8:00',
-  },
-]
+export type RegisterProps = {
+  id: string
+  timeRegistered: Date
+  user: {
+    id: string
+    name: string
+  }
+}
 
-const RegistersTable: React.FC = () => {
+type Props = {
+  registers: RegisterProps[]
+}
+
+const RegistersTable: React.FC<Props> = ({ registers }) => {
   return (
     <Container>
       <StyledTable>
@@ -43,15 +29,21 @@ const RegistersTable: React.FC = () => {
         </Head>
 
         <Body>
-          {data.map((item: any) => (
-            <Row key={item.colaborator.id}>
-              <Register
-                colaborator={item.colaborator}
-                date={item.date}
-                hour={item.hour}
-              />
-            </Row>
-          ))}
+          {registers.map((register) => {
+            const timeRegisteredToNewDate = register.timeRegistered
+              ? new Date(register.timeRegistered)
+              : null
+
+            return (
+              <Row key={register.id}>
+                <Register
+                  user={register.user}
+                  date={timeRegisteredToNewDate}
+                  hour={timeRegisteredToNewDate}
+                />
+              </Row>
+            )
+          })}
         </Body>
       </StyledTable>
     </Container>

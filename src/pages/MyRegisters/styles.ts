@@ -7,7 +7,7 @@ export const Container = styled('div')`
   flex-direction: column;
 `
 
-export const RegisterButton = styled(Button)`
+export const RegisterButton = styled(Button).attrs((props: any) => ({ ...props }))`
   align-self: flex-end;
   margin-bottom: 3rem;
 `

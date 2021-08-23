@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import colors from 'styles/colors'
 import { TableCell } from '@material-ui/core'
+import Time from 'react-time-format'
 
 const { white, accent_2, gray_2 } = colors
 
@@ -61,7 +62,7 @@ export const Id = styled('p')`
   font-size: 12px;
 `
 
-export const Date = styled('p')`
+export const Date = styled(Time)`
   font-size: 20px;
   color: ${gray_2};
   margin: 10px 0;

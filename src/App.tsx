@@ -5,7 +5,7 @@ import GlobalStyle from './global-style'
 import Routes from './routes'
 import { ApolloProvider } from '@apollo/client'
 import api from 'services/api'
-import UserContext from 'context'
+import { UserContext } from 'context'
 
 function App() {
   useEffect(() => {

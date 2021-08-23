@@ -5,7 +5,7 @@ import { CircularProgress } from '@material-ui/core'
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from 'services/querys'
 import { ContextUser } from 'context'
-import { saveToken } from 'services/auth'
+import { hasSavedUser, saveToken, saveUser } from 'services/auth'
 import { useHistory } from 'react-router-dom'
 
 import {
@@ -58,13 +58,21 @@ const Login: React.FC = () => {
         username: login.user.username,
         role: login.user.role.name,
       }
+      saveUser(newUser)
       setUser(newUser)
     }
   }, [data])
 
   useEffect(() => {
+    if (hasSavedUser()) {
+      const user = hasSavedUser()
+      setUser(user)
+
+      history.push('/')
+    }
+
     if (data) {
-      history.push('/dashboard')
+      history.push('/')
     }
   }, [data])
 

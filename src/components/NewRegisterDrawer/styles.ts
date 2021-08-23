@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { TextField } from '@material-ui/core'
 import Button from '../Button'
 
 export const Content = styled('div')`
@@ -26,6 +27,8 @@ export const MiddleContainer = styled('div')`
 
   padding: 30px 40px;
 `
+
+export const DateInput = styled(TextField)``
 
 export const UserInfos = styled('section')``
 
@@ -65,8 +68,8 @@ const StyledButton = styled(Button)`
   align-self: center;
 `
 
-export const SaveButton = styled(StyledButton)`
+export const SaveButton = styled(StyledButton).attrs((props: any) => ({ ...props }))`
   margin-right: 20px;
 `
 
-export const CancelButton = styled(StyledButton)``
+export const CancelButton = styled(StyledButton).attrs((props: any) => ({ ...props }))``

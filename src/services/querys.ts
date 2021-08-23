@@ -34,6 +34,10 @@ export const GET_REGISTERED_TIMES = gql`
     registeredTimes {
       id
       timeRegistered
+      user {
+        name
+        id
+      }
     }
   }
 `
