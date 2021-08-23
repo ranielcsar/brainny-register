@@ -1,6 +1,7 @@
-import React, { BaseSyntheticEvent, FormEvent, useContext, useState } from 'react'
+import React, { BaseSyntheticEvent, useContext } from 'react'
 import { Drawer } from '@material-ui/core'
 import { ContextUser } from 'context'
+import Loading from '../Loading'
 
 import {
   Content,
@@ -17,27 +18,20 @@ import {
 
 type Props = {
   open: boolean
-  handleOpen: () => void
+  onSave: () => void
+  onCancel: () => void
+  onDateChange: (event: BaseSyntheticEvent) => void
+  isLoading: boolean
 }
 
-const NewRegisterDrawer: React.FC<Props> = ({ open, handleOpen }) => {
-  // const { user } = useContext(ContextUser)
-  const [newDate, setNewDate] = useState(new Date())
-  const user = {
-    role: 'Admin',
-    username: 'Administrador',
-  }
-
-  const createNewRegister = async () => {
-    console.log(newDate)
-    handleOpen()
-  }
-
-  const handleNewDate = (event: BaseSyntheticEvent) => {
-    const newDate = new Date(event.target.value)
-
-    setNewDate(newDate)
-  }
+const NewRegisterDrawer: React.FC<Props> = ({
+  open,
+  onSave,
+  onCancel,
+  onDateChange,
+  isLoading,
+}) => {
+  const { user } = useContext(ContextUser)
 
   return (
     <Drawer open={open} anchor={'right'}>
@@ -46,16 +40,15 @@ const NewRegisterDrawer: React.FC<Props> = ({ open, handleOpen }) => {
 
         <MiddleContainer>
           <UserInfos>
-            <Role>{user.role}</Role>
-            <Name>{user.username}</Name>
+            <Role>{user?.role}</Role>
+            <Name>{user?.username}</Name>
           </UserInfos>
 
           <DateInput
             id="datetime-local"
             label="Selecione uma data"
             type="datetime-local"
-            defaultValue={newDate}
-            onChange={handleNewDate}
+            onChange={onDateChange}
             InputLabelProps={{
               shrink: true,
             }}
@@ -63,8 +56,8 @@ const NewRegisterDrawer: React.FC<Props> = ({ open, handleOpen }) => {
         </MiddleContainer>
 
         <Footer>
-          <SaveButton title="Salvar" onClick={createNewRegister} />
-          <CancelButton secondary title="Cancelar" onClick={handleOpen} />
+          {isLoading ? <Loading /> : <SaveButton title="Salvar" onClick={onSave} />}
+          <CancelButton secondary title="Cancelar" onClick={onCancel} />
         </Footer>
       </Content>
     </Drawer>

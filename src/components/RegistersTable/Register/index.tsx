@@ -20,7 +20,7 @@ const Register: React.FC<RegisterProps> = ({ user, date, hour, ...rest }) => (
 
     {date ? <Date value={date} format="DD/MM/YY" /> : '...'}
 
-    <Hour>{hour ? `${hour.getHours()}:00h` : '-'}</Hour>
+    <Hour>{hour ? `${hour.getHours()}:${hour.getMinutes()}h` : '-'}</Hour>
   </Container>
 )
 

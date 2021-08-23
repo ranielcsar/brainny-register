@@ -9,6 +9,7 @@ export const Container = styled('main')`
   grid-template-rows: 5rem 1fr;
   grid-template-columns: 1fr;
   min-height: 100vh;
+  position: relative;
 
   background-color: ${gray_bg};
 
@@ -29,6 +30,7 @@ export const StyledSidebar = styled(Sidebar)`
   @media (min-width: 1024px) {
     grid-row: 1;
     grid-column: 1;
+    position: fixed;
   }
 `
 

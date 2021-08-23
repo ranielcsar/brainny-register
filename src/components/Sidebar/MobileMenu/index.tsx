@@ -2,9 +2,6 @@ import React, { CSSProperties } from 'react'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
 import { Drawer } from '@material-ui/core'
-import SidebarItem from '../SidebarItem'
-import { ReactComponent as DashboardIcon } from 'assets/icons/dashboard.svg'
-import { ReactComponent as RegistersIcon } from 'assets/icons/register.svg'
 
 import { DrawerContent } from './styles'
 
@@ -21,14 +18,13 @@ type Props = {
   onClose: () => void
 }
 
-const MobileMenu: React.FC<Props> = ({ open, onClick, onClose }) => (
+const MobileMenu: React.FC<Props> = ({ open, onClick, onClose, children }) => (
   <>
     <MenuIcon style={{ fontSize: 30 }} onClick={onClick} />
     <Drawer anchor={'left'} open={open}>
       <DrawerContent>
         <CloseIcon style={closeIconStyle} onClick={onClose} />
-        <SidebarItem path="dashboard" label="Dashboard" icon={DashboardIcon} />
-        <SidebarItem path="my-registers" label="Meus Registros" icon={RegistersIcon} />
+        {children}
       </DrawerContent>
     </Drawer>
   </>

@@ -4,6 +4,7 @@ export const TOKEN_KEY = '@brainny-token'
 export const USER = '@brainny-user'
 
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null
+
 export const getToken = () => localStorage.getItem(TOKEN_KEY)
 
 export const saveToken = (token: string) => {
@@ -22,4 +23,5 @@ export const hasSavedUser = () => {
 
 export const logout = () => {
   localStorage.removeItem(TOKEN_KEY)
+  localStorage.removeItem(USER)
 }

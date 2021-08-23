@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import colors from 'styles/colors'
 import { ReactComponent as BrainnyLogo } from 'assets/images/logo.svg'
+import { ReactComponent as Logout } from 'assets/icons/logout.svg'
 
-const { white } = colors
+const { white, accent } = colors
 
 export const Container = styled('aside')`
   width: 100%;
@@ -19,6 +20,10 @@ export const Container = styled('aside')`
     flex-direction: column;
     padding: 20px 15px;
     justify-content: unset;
+    width: 10%;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 `
 
@@ -38,5 +43,18 @@ export const Divider = styled('div')`
     height: 2px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     margin-top: 2.1875rem;
+  }
+`
+
+export const LogoutButton = styled(Logout)`
+  align-self: center;
+  position: fixed;
+  bottom: 3rem;
+  cursor: pointer;
+  width: max-content;
+  height: max-content;
+
+  & > path:hover {
+    fill: ${accent};
   }
 `

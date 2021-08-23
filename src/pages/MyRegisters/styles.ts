@@ -6,8 +6,3 @@ export const Container = styled('div')`
   display: flex;
   flex-direction: column;
 `
-
-export const RegisterButton = styled(Button).attrs((props: any) => ({ ...props }))`
-  align-self: flex-end;
-  margin-bottom: 3rem;
-`

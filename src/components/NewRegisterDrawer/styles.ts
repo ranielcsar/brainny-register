@@ -28,7 +28,11 @@ export const MiddleContainer = styled('div')`
   padding: 30px 40px;
 `
 
-export const DateInput = styled(TextField)``
+export const DateInput = styled(TextField)`
+  &&& {
+    margin-top: 40px;
+  }
+`
 
 export const UserInfos = styled('section')``
 

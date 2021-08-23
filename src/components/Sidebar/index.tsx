@@ -1,15 +1,18 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import SidebarItem from './SidebarItem'
 import MobileMenu from './MobileMenu'
-import { ReactComponent as DashboardIcon } from 'assets/icons/dashboard.svg'
-import { ReactComponent as RegistersIcon } from 'assets/icons/register.svg'
+import createUserLinks from './createUserLinks'
+import { useAuth } from 'context'
 
-import { Container, Logo, Divider } from './styles'
+import { Container, Logo, Divider, LogoutButton } from './styles'
+import { useHistory } from 'react-router-dom'
+import { logout } from 'services/auth'
 
 const Sidebar: React.FC = () => {
   const [screenWidth, setScreenWidth] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { user } = useAuth()
+  const history = useHistory()
 
   useEffect(() => {
     const root = document.querySelector('#root')
@@ -17,6 +20,11 @@ const Sidebar: React.FC = () => {
 
     setScreenWidth(width)
   }, [])
+
+  const handleLogout = () => {
+    history.push('/')
+    logout()
+  }
 
   return (
     <Container>
@@ -26,7 +34,9 @@ const Sidebar: React.FC = () => {
             open={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
             onClose={() => setMenuOpen(false)}
-          />
+          >
+            {createUserLinks(user)}
+          </MobileMenu>
 
           <Logo />
           <Divider />
@@ -36,10 +46,11 @@ const Sidebar: React.FC = () => {
           <Logo />
           <Divider />
 
-          <SidebarItem path="dashboard" label="Dashboard" icon={DashboardIcon} />
-          <SidebarItem path="my-registers" label="Meus Registros" icon={RegistersIcon} />
+          {createUserLinks(user)}
         </>
       )}
+
+      <LogoutButton onClick={handleLogout} />
     </Container>
   )
 }

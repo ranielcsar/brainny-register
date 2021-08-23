@@ -5,7 +5,7 @@ import PrivateRoute from './PrivateRoute'
 function AdminRoutes() {
   return (
     <>
-      <PrivateRoute exact path="/" component={Dashboard} />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/my-registers" component={MyRegisters} />
     </>
   )

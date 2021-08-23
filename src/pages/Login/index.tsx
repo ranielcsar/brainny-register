@@ -31,7 +31,7 @@ const Login: React.FC = () => {
 
   const [login, { loading, data, error }] = useMutation(LOGIN_USER)
 
-  const handleLoginSubmit = (event: FormEvent) => {
+  const handleLoginSubmit = async (event: FormEvent) => {
     event.preventDefault()
 
     try {
@@ -42,7 +42,7 @@ const Login: React.FC = () => {
         variables: { identifier, password },
       }
 
-      login(loginOptions)
+      await login(loginOptions)
     } catch (err) {
       throw new Error(String(error))
     }
@@ -60,6 +60,12 @@ const Login: React.FC = () => {
       }
       saveUser(newUser)
       setUser(newUser)
+
+      if (newUser.role === 'admin') {
+        history.push('/dashboard')
+      } else {
+        history.push('/my-registers')
+      }
     }
   }, [data])
 
@@ -68,13 +74,13 @@ const Login: React.FC = () => {
       const user = hasSavedUser()
       setUser(user)
 
-      history.push('/')
+      if (user.role === 'admin') {
+        history.push('/dashboard')
+      } else {
+        history.push('/my-registers')
+      }
     }
-
-    if (data) {
-      history.push('/')
-    }
-  }, [data])
+  }, [])
 
   return (
     <Container>

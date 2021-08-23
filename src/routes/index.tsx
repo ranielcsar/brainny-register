@@ -5,7 +5,6 @@ import PageLayout from 'layout/PageLayout'
 import { useAuth } from 'context'
 import AdminRoutes from './AdminRoutes'
 import UserRoutes from './UserRoutes'
-import MyRegisters from 'pages/MyRegisters'
 
 function Routes() {
   const { user } = useAuth()
@@ -14,7 +13,7 @@ function Routes() {
 
   return (
     <Switch>
-      <Route exact path="/" component={MyRegisters} />
+      <Route exact path="/" component={Login} />
 
       {user && (
         <PageLayout>
