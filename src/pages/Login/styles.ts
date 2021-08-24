@@ -32,6 +32,7 @@ export const Container = styled('main')`
 export const ApresentationContainer = styled('section')`
   grid-column: 1;
   align-self: center;
+  justify-self: center;
   font-family: 'Montserrat';
 
   display: flex;
@@ -99,8 +100,11 @@ export const LoginFormContainer = styled('section')`
   z-index: 1;
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin: auto;
+  width: 90%;
+
+  @media (min-width: 375px) {
+    justify-self: center;
+  }
 
   @media (min-width: 768px) {
     width: 30.125rem;

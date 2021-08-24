@@ -5,9 +5,8 @@ import NewRegister from './NewRegister'
 import { useQuery } from '@apollo/client'
 import { GET_REGISTERED_TIMES } from 'services/querys'
 
-import { Container } from './styles'
+import { Container, StyledLoading } from './styles'
 import { RegisterProps } from 'components/RegistersTable'
-import { CircularProgress } from '@material-ui/core'
 import { ContextUser } from 'context'
 
 const MyRegisters: React.FC = () => {
@@ -32,11 +31,7 @@ const MyRegisters: React.FC = () => {
     <Container>
       <NewRegister />
 
-      {loading ? (
-        <CircularProgress color="inherit" />
-      ) : (
-        <RegistersTable registers={registers} />
-      )}
+      {loading ? <StyledLoading /> : <RegistersTable registers={registers} />}
     </Container>
   )
 }

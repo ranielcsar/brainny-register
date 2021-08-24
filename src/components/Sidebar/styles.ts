@@ -10,7 +10,9 @@ export const Container = styled('aside')`
   height: 100%;
   background-color: ${white};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 
   display: flex;
   align-items: center;
