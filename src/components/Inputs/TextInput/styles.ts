@@ -9,6 +9,7 @@ export const Container = styled('div')`
   flex-direction: column-reverse;
   position: relative;
   font-family: 'Montserrat', sans-serif;
+  margin-bottom: 2.25rem;
 `
 
 export const StyledInput = styled('input').attrs((props: InputProps) => ({
@@ -16,7 +17,6 @@ export const StyledInput = styled('input').attrs((props: InputProps) => ({
 }))`
   all: unset;
   padding: 15px 10px;
-  margin-bottom: 2.25rem;
   background-color: ${gray_input};
   outline: none;
   transition: all 0.2s ease;

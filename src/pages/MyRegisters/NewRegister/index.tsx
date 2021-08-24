@@ -3,23 +3,21 @@ import NewRegisterDrawer from 'components/NewRegisterDrawer'
 import { useMutation } from '@apollo/client'
 import { CREATE_REGISTERED_TIME } from 'services/querys'
 import { RegisterButton } from './styles'
-import { useEffect } from 'react'
-import Snackbar from '@material-ui/core/Snackbar'
-import MuiAlert from '@material-ui/lab/Alert'
 import { useAuth } from 'context'
+import NewRegisterAlert from '../NewRegisterAlert'
 
 const NewRegister: React.FC = () => {
-  const [newDate, setNewDate] = useState(new Date())
+  const [newDate, setNewDate] = useState<Date | null>()
   const [openNewRegisterDrawer, setOpenNewRegisterDrawer] = useState(false)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
   const { user } = useAuth()
 
   const handleOpenNewRegisterDrawer = () => {
     setOpenNewRegisterDrawer(!openNewRegisterDrawer)
   }
 
-  const [createRegisteredTime, { loading, data, error }] =
-    useMutation(CREATE_REGISTERED_TIME)
+  const [createRegisteredTime, { loading }] = useMutation(CREATE_REGISTERED_TIME)
 
   const handleNewDate = (event: BaseSyntheticEvent) => {
     const newDate = new Date(event.target.value)
@@ -29,6 +27,11 @@ const NewRegister: React.FC = () => {
 
   const handleNewRegister = async () => {
     try {
+      if (!newDate) {
+        setShowErrorMessage(true)
+        return
+      }
+
       const loginOptions = {
         variables: {
           dateTime: {
@@ -39,17 +42,14 @@ const NewRegister: React.FC = () => {
       }
 
       await createRegisteredTime(loginOptions)
+      handleOpenNewRegisterDrawer()
       setShowSuccessMessage(true)
+      setNewDate(null)
     } catch (err) {
-      throw new Error(String(error))
+      setShowErrorMessage(true)
+      return
     }
   }
-
-  useEffect(() => {
-    if (data) {
-      console.log(data)
-    }
-  }, [data])
 
   return (
     <>
@@ -63,15 +63,19 @@ const NewRegister: React.FC = () => {
         isLoading={loading}
       />
 
-      <Snackbar
+      <NewRegisterAlert
         open={showSuccessMessage}
-        autoHideDuration={2000}
         onClose={() => setShowSuccessMessage(false)}
-      >
-        <MuiAlert onClose={() => setShowSuccessMessage(false)} severity="success">
-          Novo Registro efetuado com sucesso!
-        </MuiAlert>
-      </Snackbar>
+        message={'Novo Registro efetuado com sucesso!'}
+        type="success"
+      />
+
+      <NewRegisterAlert
+        open={showErrorMessage}
+        onClose={() => setShowErrorMessage(false)}
+        message={'Por favor, escolha uma data.'}
+        type="error"
+      />
     </>
   )
 }

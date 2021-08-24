@@ -48,13 +48,16 @@ export const Divider = styled('div')`
 
 export const LogoutButton = styled(Logout)`
   align-self: center;
-  position: fixed;
-  bottom: 3rem;
   cursor: pointer;
   width: max-content;
   height: max-content;
 
   & > path:hover {
     fill: ${accent};
+  }
+
+  @media (min-width: 1024px) {
+    position: fixed;
+    bottom: 3rem;
   }
 `

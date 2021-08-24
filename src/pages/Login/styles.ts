@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import colors from 'styles/colors'
 import { ReactComponent as Logo } from 'assets/images/logo.svg'
 import { ReactComponent as Vector } from 'assets/images/vector.svg'
+import { Form } from '@unform/web'
 
 const { black_bg, white, accent_2 } = colors
 
@@ -142,7 +143,7 @@ export const LoginVector = styled(Vector)`
   }
 `
 
-export const LoginForm = styled('form')`
+export const LoginForm = styled(Form)`
   z-index: 5;
   background-color: ${white};
   height: max-content;

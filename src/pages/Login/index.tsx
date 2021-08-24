@@ -7,6 +7,8 @@ import { LOGIN_USER } from 'services/querys'
 import { ContextUser } from 'context'
 import { hasSavedUser, saveToken, saveUser } from 'services/auth'
 import { useHistory } from 'react-router-dom'
+import { FormHandles, SubmitHandler } from '@unform/core'
+import * as Yup from 'yup'
 
 import {
   Container,
@@ -18,25 +20,37 @@ import {
   LoginVector,
   LoginForm,
 } from './styles'
+import showYupErrors from 'utils/showYupError'
 
-type RefType = RefObject<HTMLInputElement> & {
-  value: string
+type LoginFormData = {
+  identifier: string
+  password: string
 }
 
 const Login: React.FC = () => {
-  const loginRef = useRef<RefType>(null)
-  const passwordRef = useRef<RefType>(null)
+  const formRef = useRef<FormHandles>(null)
   const { setUser } = useContext(ContextUser)
   const history = useHistory()
 
   const [login, { loading, data, error }] = useMutation(LOGIN_USER)
 
-  const handleLoginSubmit = async (event: FormEvent) => {
-    event.preventDefault()
-
+  const handleLoginSubmit: SubmitHandler<LoginFormData> = async (data) => {
     try {
-      const identifier = loginRef.current?.value || ''
-      const password = passwordRef.current?.value || ''
+      const { identifier, password } = data
+
+      const loginSchema = Yup.object().shape({
+        identifier: Yup.string()
+          .email('Email inválido.')
+          .required('Por favor digite um email.'),
+
+        password: Yup.string()
+          .required('Ops! Faltou a senha...')
+          .min(8, 'A senha precisa de no mínimo 8 dígitos.'),
+      })
+
+      await loginSchema.validate(data, {
+        abortEarly: false,
+      })
 
       const loginOptions = {
         variables: { identifier, password },
@@ -44,7 +58,7 @@ const Login: React.FC = () => {
 
       await login(loginOptions)
     } catch (err) {
-      throw new Error(String(error))
+      showYupErrors(formRef, err)
     }
   }
 
@@ -93,9 +107,10 @@ const Login: React.FC = () => {
       <LoginFormContainer>
         <LoginVector />
 
-        <LoginForm onSubmit={handleLoginSubmit}>
-          <TextInput title="Login" ref={loginRef as RefType} />
-          <TextInput title="Senha" type="password" ref={passwordRef as RefType} />
+        <LoginForm ref={formRef} onSubmit={handleLoginSubmit}>
+          <TextInput name="identifier" title="Login" />
+          <TextInput name="password" title="Senha" type="password" />
+
           {loading ? (
             <CircularProgress color="inherit" />
           ) : (
